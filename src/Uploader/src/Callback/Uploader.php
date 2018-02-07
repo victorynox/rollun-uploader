@@ -8,6 +8,7 @@ use IteratorAggregate;
 use rollun\callback\Callback\CallbackInterface;
 use rollun\datastore\DataStore\Interfaces\DataStoresInterface;
 use rollun\dic\InsideConstruct;
+use rollun\Uploader\SeekableIterator;
 
 class Uploader implements CallbackInterface
 {
