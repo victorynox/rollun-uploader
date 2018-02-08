@@ -2,6 +2,8 @@
 
 namespace rollun\TuckerRocky;
 
+use rollun\TuckerRocky\Decoders\LineDecoder;
+
 class EncodedFileIterator implements \Iterator
 {
     /**
@@ -19,25 +21,31 @@ class EncodedFileIterator implements \Iterator
      */
     protected $fileIterator;
 
+    /** @var LineDecoder */
+    protected $lineDecoder;
+
 
     /**
      * EncodedFileIterator constructor.
+     * @param LineDecoder $lineDecoder
      * @param $filePath
      */
-    public function __construct($filePath)
+    public function __construct(LineDecoder $lineDecoder, $filePath)
     {
         $this->filePath = $filePath;
         $this->fileIterator = new \SplFileObject($this->filePath, "rb");
         $this->position = 0;
+        $this->lineDecoder = $lineDecoder;
     }
 
     /**
      * @param string $line
      * @return array
+     * @throws Decoders\UnknownFieldTypeException
      */
     protected function parseLine($line)
     {
-        return [];
+        return $this->lineDecoder->decode($line);
     }
 
     /**
@@ -45,6 +53,7 @@ class EncodedFileIterator implements \Iterator
      * @link http://php.net/manual/en/iterator.current.php
      * @return mixed Can return any type.
      * @since 5.0.0
+     * @throws Decoders\UnknownFieldTypeException
      */
     public function current()
     {
@@ -115,8 +124,6 @@ class EncodedFileIterator implements \Iterator
 
     public function __wakeup()
     {
-        $this->__construct($this->filePath);
+        $this->__construct($this->lineDecoder, $this->filePath);
     }
-
-
 }

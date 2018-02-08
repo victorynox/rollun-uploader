@@ -84,4 +84,13 @@ class LineDecoder
         }
         return $itemData;
     }
+
+    public function __sleep()
+    {
+        return [
+            "schema", "debugMode"
+        ];
+    }
+
+
 }

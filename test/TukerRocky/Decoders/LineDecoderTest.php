@@ -86,6 +86,5 @@ class LineDecoderTest extends TestCase
         $this->object = new LineDecoder($schema);
         $item = $this->object->decode($line);
         $this->assertEquals($expectedItem, $item);
-
     }
 }
