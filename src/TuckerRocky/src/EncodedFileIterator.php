@@ -21,9 +21,10 @@ class EncodedFileIterator implements \Iterator
      */
     protected $fileIterator;
 
-    /** @var LineDecoder */
+    /**
+     * @var LineDecoder
+     */
     protected $lineDecoder;
-
 
     /**
      * EncodedFileIterator constructor.
@@ -74,6 +75,7 @@ class EncodedFileIterator implements \Iterator
     public function next()
     {
         $this->position++;
+        $this->fileIterator->seek($this->position);
     }
 
     /**
@@ -109,6 +111,7 @@ class EncodedFileIterator implements \Iterator
     public function rewind()
     {
         $this->position = 0;
+        $this->fileIterator->seek($this->position);
     }
 
     /**

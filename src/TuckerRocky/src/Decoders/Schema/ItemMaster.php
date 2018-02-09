@@ -1,10 +1,19 @@
 <?php
 
 
-namespace rollun\TuckerRocky\Decoders;
+namespace rollun\TuckerRocky\Decoders\Schema;
+use rollun\TuckerRocky\Decoders\Enums;
 
-
-abstract class PriceSchema
+/**
+ * File 3: 'itemmstrnew' (please note that this is a new item master) **Also in CSV format as "itemmstrnewcsv.csv"**
+ * Note:  In order to create more manageable data we have split the
+ * itemmstrnew file in half and create 2 separate a/b files
+ * (itemmstrnewa & itemmstrnewb).  This is the exact same data
+ * contained in itemmstrnew, just broken down into smaller files.
+ * Class ItemMaster
+ * @package rollun\TuckerRocky\Decoders\Schema
+ */
+abstract class ItemMaster
 {
     static public function getSchema()
     {

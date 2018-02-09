@@ -45,7 +45,15 @@ class LineDecoderAbstractFactory implements AbstractFactoryInterface
 
     /**
      * Create an object
-     *
+     * LineDecoderAbstractFactory::KEY => [
+     *      "ItemSupercededDecoder" => [
+     *          LineDecoderAbstractFactory::KEY_SCHEMA => Schema/ItemSuperceded::getSchema()
+     *      ],
+     *      "ItemMasterDecoder" => [
+     *          LineDecoderAbstractFactory::KEY_SCHEMA => Schema/ItemMaster::getSchema()
+     *          LineDecoderAbstractFactory::IS_DEBUG_MODE => true
+     *      ]
+     * ]
      * @param  ContainerInterface $container
      * @param  string $requestedName
      * @param  null|array $options
